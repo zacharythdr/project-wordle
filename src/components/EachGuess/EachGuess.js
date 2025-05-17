@@ -2,6 +2,7 @@ import React from "react";
 import { range } from "../../utils.js";
 
 function EachGuess({ EachWord }) {
+
   return (
     <>
       <p className="guess">

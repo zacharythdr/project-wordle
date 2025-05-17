@@ -5,6 +5,7 @@ import EachGuess from "../EachGuess/EachGuess.js";
 import { checkGuess } from "../../game-helpers.js";
 
 function GuessWords({ words, answer }) {
+  
   return (
     <div>
       <div className="guess-results">

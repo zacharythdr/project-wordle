@@ -16,6 +16,7 @@ function Game() {
   function handleAddGuess(guess){
     setWords([...words,guess])
   }
+  
   return <>
   <GuessWords words={words} ></GuessWords>
   <Guess handleAddGuess={handleAddGuess}></Guess>

@@ -1,23 +1,20 @@
 import React from "react";
 
-function ResultBanner({ status, answer, wordsLen }) {
-  if (status === "won") {
-    return (
-      <div className="happy banner">
+function ResultBanner({ handleRestart, status, answer, wordsLen }) {
+  return (
+    <div className={`${status === "won" ? "happy" : "sad"} banner`}>
+      {status === "won" ? (
         <p>
           <strong>Congratulations!</strong> Got it in
           <strong> {wordsLen} guesses</strong>.
         </p>
-      </div>
-    );
-  } else {
-    return (
-      <div className="sad banner">
+      ) : (
         <p>
           Sorry, the correct answer is <strong>{answer}</strong>.
         </p>
-      </div>
-    );
-  }
+      )}
+      <button onClick={handleRestart}>Restart Game</button>
+    </div>
+  );
 }
 export default ResultBanner;

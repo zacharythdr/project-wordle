@@ -10,14 +10,23 @@ import Keyboard from "../Keyboard/Keyboard.js";
 import { checkGuess } from "../../game-helpers.js";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+// console.info({ answer });
 
 function Game() {
+  const [answer, setAnswer] = React.useState(() => sample(WORDS));
   const [words, setWords] = React.useState([]);
   const [gameStatus, setGameStatus] = React.useState("running");
 
+  console.info({ answer });
+
+  function handleRestart() {
+    const newAnswer = sample(WORDS);
+    setAnswer(newAnswer);
+    setWords([]);
+    setGameStatus("running");
+  }
   function handleAddGuess(guess) {
     const nextGuuess = [...words, guess];
     setWords(nextGuuess);
@@ -39,6 +48,7 @@ function Game() {
       <Keyboard validatedGuesses={validatedGuesses}></Keyboard>
       {(gameStatus === "won" || gameStatus === "lost") && (
         <ResultBanner
+          handleRestart={handleRestart}
           status={gameStatus}
           answer={answer}
           wordsLen={words.length}
